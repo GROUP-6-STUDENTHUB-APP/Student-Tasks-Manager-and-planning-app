@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # StudentHub - Gestion des Tâches pour Étudiants
 
 Application web moderne pour la gestion des tâches, permettant aux étudiants d'ajouter, visualiser, modifier et supprimer leurs tâches.
@@ -109,3 +110,6 @@ studenthub/
 
 Ce projet est libre d'utilisation à des fins éducatives.
 
+=======
+# Student-Tasks-Manager-and-planning-app
+>>>>>>> 59975e4588f8c39cf262ae30128bb69660a89416
