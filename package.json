@@ -1,0 +1,24 @@
+{
+  "name": "studenthub",
+  "version": "1.0.0",
+  "description": "StudentHub - Academic Management Web Application",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve ."
+  },
+  "keywords": [
+    "student",
+    "academic",
+    "gpa",
+    "task-management",
+    "study-planner"
+  ],
+  "author": "GROUP-6-STUDENTHUB",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GROUP-6-STUDENTHUB/studenthub.git"
+  }
+}
+

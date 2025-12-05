@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Plan - StudentHub</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/study-plan.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-graduation-cap"></i>
+            <span>StudentHub</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="tasks.html" class="nav-item">
+                <i class="fas fa-tasks"></i>
+                <span>Tasks</span>
+            </a>
+            <a href="gpa.html" class="nav-item">
+                <i class="fas fa-calculator"></i>
+                <span>GPA Calculator</span>
+            </a>
+            <a href="study-plan.html" class="nav-item active">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Study Plan</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <span class="user-name" id="userName">Student</span>
+                    <span class="user-email" id="userEmail">student@example.com</span>
+                </div>
+            </div>
+            <a href="index.html" class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>Study Plan</h1>
+            </div>
+            <div class="topbar-right">
+                <button class="btn-primary" id="addStudySessionBtn">
+                    <i class="fas fa-plus"></i> Add Study Session
+                </button>
+            </div>
+        </header>
+
+        <!-- Study Plan Content -->
+        <div class="study-plan-content">
+            <!-- Weekly View -->
+            <div class="study-plan-header">
+                <div class="week-navigation">
+                    <button class="btn-nav" id="prevWeek">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <h2 id="currentWeek">Week 1</h2>
+                    <button class="btn-nav" id="nextWeek">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="week">Week View</button>
+                    <button class="view-btn" data-view="month">Month View</button>
+                </div>
+            </div>
+
+            <!-- Calendar Grid -->
+            <div class="calendar-grid" id="calendarGrid">
+                <!-- Calendar will be generated here -->
+            </div>
+
+            <!-- Study Sessions List -->
+            <div class="study-sessions-section">
+                <div class="section-header">
+                    <h2>Study Sessions</h2>
+                    <span class="session-count" id="sessionCount">0 sessions</span>
+                </div>
+                <div id="studySessionsList" class="sessions-list">
+                    <!-- Sessions will be loaded here -->
+                    <div class="empty-state">
+                        <i class="fas fa-calendar-plus"></i>
+                        <p>No study sessions scheduled. Create your first study plan!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add/Edit Study Session Modal -->
+    <div id="sessionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add Study Session</h2>
+                <button class="modal-close" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="sessionForm" class="session-form">
+                <div class="form-group">
+                    <label for="sessionTitle">
+                        <i class="fas fa-heading"></i> Session Title *
+                    </label>
+                    <input type="text" id="sessionTitle" name="title" required placeholder="e.g., Study Database Systems">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="sessionSubject">
+                            <i class="fas fa-book"></i> Subject/Course *
+                        </label>
+                        <input type="text" id="sessionSubject" name="subject" required placeholder="e.g., Database Systems">
+                    </div>
+                    <div class="form-group">
+                        <label for="sessionDate">
+                            <i class="fas fa-calendar"></i> Date *
+                        </label>
+                        <input type="date" id="sessionDate" name="date" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="sessionStartTime">
+                            <i class="fas fa-clock"></i> Start Time *
+                        </label>
+                        <input type="time" id="sessionStartTime" name="startTime" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sessionEndTime">
+                            <i class="fas fa-clock"></i> End Time *
+                        </label>
+                        <input type="time" id="sessionEndTime" name="endTime" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="sessionType">
+                        <i class="fas fa-tag"></i> Session Type
+                    </label>
+                    <select id="sessionType" name="type">
+                        <option value="study">Study Session</option>
+                        <option value="review">Review Session</option>
+                        <option value="practice">Practice Problems</option>
+                        <option value="project">Project Work</option>
+                        <option value="exam-prep">Exam Preparation</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="sessionDescription">
+                        <i class="fas fa-align-left"></i> Description
+                    </label>
+                    <textarea id="sessionDescription" name="description" rows="4" placeholder="What will you study? (e.g., Chapter 5-7, Practice SQL queries...)"></textarea>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="sessionReminder" name="reminder">
+                    <label for="sessionReminder">Set reminder notification</label>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="cancelSession">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i> Save Session
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+        <div class="container">
+            <p>&copy; 2024 StudentHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/study-plan.js"></script>
+</body>
+</html>
+
