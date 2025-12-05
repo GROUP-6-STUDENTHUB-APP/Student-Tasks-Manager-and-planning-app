@@ -1,34 +1,12 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "**/*.html",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
-  ],
-  "headers": [
+  "buildCommand": "",
+  "outputDirectory": ".",
+  "framework": null,
+  "rewrites": [
     {
       "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        }
-      ]
+      "destination": "/index.html"
     }
   ]
 }
